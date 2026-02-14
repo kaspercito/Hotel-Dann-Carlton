@@ -17,10 +17,16 @@ emailjs.init("QUCTn3sYYVJ2oKyt_");
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 background:black;
 font-family:Arial;
+overflow-x:hidden;
 }
 
 img{
@@ -28,23 +34,32 @@ width:100%;
 display:block;
 }
 
-/* BOTON */
+/* ================= BOTON CONFIRMAR ================= */
 
 .confirmar{
 position:fixed;
-bottom:40px;
 left:50%;
 transform:translateX(-50%);
-padding:14px 50px;
+
+/* 👇👇👇 CAMBIA SOLO ESTE NUMERO PARA SUBIR O BAJAR EL BOTON */
+/* MAS GRANDE = MAS ARRIBA */
+/* MAS PEQUEÑO = MAS ABAJO */
+
+bottom:120px;
+
+/* 👆👆👆 */
+
+padding:14px 55px;
 background:transparent;
 border:2px solid #2fa4ff;
 color:white;
 border-radius:30px;
-letter-spacing:2px;
-z-index:10;
+letter-spacing:3px;
+z-index:20;
+cursor:pointer;
 }
 
-/* modal */
+/* ================= MODAL ================= */
 
 .modal{
 display:none;
@@ -56,6 +71,7 @@ height:100%;
 background:rgba(0,0,0,.85);
 justify-content:center;
 align-items:center;
+z-index:50;
 }
 
 .form{
@@ -70,6 +86,8 @@ input,select{
 width:100%;
 padding:10px;
 margin:10px 0;
+border-radius:6px;
+border:none;
 }
 
 .enviar{
@@ -78,6 +96,21 @@ padding:12px;
 border:none;
 background:#2fa4ff;
 border-radius:20px;
+color:black;
+cursor:pointer;
+}
+
+/* PC: limitar ancho tipo flyer */
+
+@media(min-width:900px){
+body{
+display:flex;
+justify-content:center;
+}
+
+.contenedor{
+width:420px;
+}
 }
 
 </style>
@@ -85,11 +118,15 @@ border-radius:20px;
 
 <body>
 
+<div class="contenedor">
+
 <img src="invitacion1.jpg">
 
-<button class="confirmar" onclick="abrir()">CONFIRMAR</button>
-
 <img src="invitacion2.jpg">
+
+</div>
+
+<button class="confirmar" onclick="abrir()">CONFIRMAR</button>
 
 <div class="modal" id="modal">
 
