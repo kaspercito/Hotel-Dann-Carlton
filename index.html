@@ -17,67 +17,33 @@ emailjs.init("QUCTn3sYYVJ2oKyt_");
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
 body{
+margin:0;
 background:black;
 font-family:Arial;
 }
 
-/* CONTENEDOR */
-
-.poster{
-position:relative;
-width:100vw;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-}
-
-/* IMAGEN RESPONSIVE REAL */
-
-.poster img{
+img{
 width:100%;
-height:auto;
-}
-
-/* PC */
-
-@media(min-width:900px){
-.poster img{
-height:100%;
-width:auto;
-}
+display:block;
 }
 
 /* BOTON */
 
 .confirmar{
-position:absolute;
-top:48%;
-left:50%;
-transform:translate(-50%,-50%);
-padding:12px 45px;
+position:sticky;
+bottom:30px;
+margin:30px auto;
+display:block;
+padding:14px 50px;
 background:transparent;
 border:2px solid #2fa4ff;
 color:white;
 border-radius:30px;
 letter-spacing:2px;
-cursor:pointer;
 }
 
-.confirmar:hover{
-background:#2fa4ff;
-color:black;
-}
-
-/* MODAL */
+/* modal */
 
 .modal{
 display:none;
@@ -103,8 +69,6 @@ input,select{
 width:100%;
 padding:10px;
 margin:10px 0;
-border-radius:6px;
-border:none;
 }
 
 .enviar{
@@ -113,8 +77,6 @@ padding:12px;
 border:none;
 background:#2fa4ff;
 border-radius:20px;
-font-weight:bold;
-cursor:pointer;
 }
 
 </style>
@@ -122,13 +84,11 @@ cursor:pointer;
 
 <body>
 
-<div class="poster">
-
-<img src="invitacion.jpg">
+<img src="invitacion1.jpg">
 
 <button class="confirmar" onclick="abrir()">CONFIRMAR</button>
 
-</div>
+<img src="invitacion2.jpg">
 
 <div class="modal" id="modal">
 
@@ -157,15 +117,8 @@ document.getElementById("modal").style.display="flex";
 
 function enviar(){
 
-let nombre=document.getElementById("nombre").value;
-
-if(nombre==""){
-alert("Escribe tu nombre");
-return;
-}
-
 emailjs.send("service_n8ktscm","template_f0x7d1h",{
-nombre:nombre,
+nombre:document.getElementById("nombre").value,
 asistencia:document.getElementById("asistencia").value
 }).then(()=>{
 alert("Confirmado ❤️");
