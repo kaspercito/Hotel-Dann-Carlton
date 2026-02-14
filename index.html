@@ -26,28 +26,33 @@ box-sizing:border-box;
 body{
 background:black;
 font-family:Arial;
-overflow-x:hidden;
+display:flex;
+justify-content:center;
 }
 
-img{
+.flyer{
+position:relative;
+width:100%;
+max-width:420px;
+}
+
+.flyer img{
 width:100%;
 display:block;
 }
 
-/* ================= BOTON CONFIRMAR ================= */
+/* BOTON PEGADO AL FLYER */
 
 .confirmar{
-position:fixed;
+position:absolute;
 left:50%;
 transform:translateX(-50%);
 
-/* 👇👇👇 CAMBIA SOLO ESTE NUMERO PARA SUBIR O BAJAR EL BOTON */
-/* MAS GRANDE = MAS ARRIBA */
-/* MAS PEQUEÑO = MAS ABAJO */
+/* 👇 CAMBIA SOLO ESTE VALOR PARA SUBIR O BAJAR */
 
-bottom:120px;
+top:62%;
 
-/* 👆👆👆 */
+/* 👆 */
 
 padding:14px 55px;
 background:transparent;
@@ -55,11 +60,10 @@ border:2px solid #2fa4ff;
 color:white;
 border-radius:30px;
 letter-spacing:3px;
-z-index:20;
 cursor:pointer;
 }
 
-/* ================= MODAL ================= */
+/* MODAL */
 
 .modal{
 display:none;
@@ -71,7 +75,7 @@ height:100%;
 background:rgba(0,0,0,.85);
 justify-content:center;
 align-items:center;
-z-index:50;
+z-index:10;
 }
 
 .form{
@@ -96,21 +100,7 @@ padding:12px;
 border:none;
 background:#2fa4ff;
 border-radius:20px;
-color:black;
 cursor:pointer;
-}
-
-/* PC: limitar ancho tipo flyer */
-
-@media(min-width:900px){
-body{
-display:flex;
-justify-content:center;
-}
-
-.contenedor{
-width:420px;
-}
 }
 
 </style>
@@ -118,15 +108,14 @@ width:420px;
 
 <body>
 
-<div class="contenedor">
+<div class="flyer">
 
 <img src="invitacion1.jpg">
-
 <img src="invitacion2.jpg">
 
-</div>
-
 <button class="confirmar" onclick="abrir()">CONFIRMAR</button>
+
+</div>
 
 <div class="modal" id="modal">
 
