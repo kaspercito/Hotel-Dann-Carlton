@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Invitación Especial</title>
+<title>Invitación</title>
 
 <link rel="icon" href="icono.jpg">
 
@@ -17,59 +17,61 @@ emailjs.init("QUCTn3sYYVJ2oKyt_");
 <style>
 body{
 margin:0;
-font-family:Arial;
-background:#000 url("fondo.jpg") center/cover no-repeat;
-color:white;
-text-align:center;
+background:black;
+display:flex;
+justify-content:center;
 }
 
 .contenedor{
-background:rgba(0,0,0,.75);
-min-height:100vh;
-padding:40px 20px;
+position:relative;
+max-width:420px;
 }
 
-h1{
-font-weight:300;
-letter-spacing:2px;
+.contenedor img{
+width:100%;
+display:block;
 }
 
-.fecha{
-font-size:60px;
-font-weight:bold;
-margin:10px 0;
-}
-
-.mes{
-letter-spacing:4px;
-}
-
-.boton{
-margin-top:30px;
-padding:15px 40px;
-background:#c51b1b;
-border:none;
+/* BOTÓN SOBRE EL PDF */
+.confirmar{
+position:absolute;
+bottom:160px;
+left:50%;
+transform:translateX(-50%);
+padding:14px 35px;
+background:#b01616;
 color:white;
-font-size:18px;
+border:none;
 border-radius:8px;
+font-size:16px;
 cursor:pointer;
 }
 
+/* FORMULARIO MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
+justify-content:center;
+align-items:center;
+}
+
+.form{
+background:#111;
+padding:25px;
+border-radius:10px;
+text-align:center;
+}
+
 input,select{
-padding:12px;
-width:260px;
+padding:10px;
 margin:8px;
-border-radius:6px;
-border:none;
-}
-
-.formulario{
-margin-top:25px;
-}
-
-.small{
-opacity:.8;
-font-size:14px;
+width:230px;
 }
 
 </style>
@@ -79,65 +81,43 @@ font-size:14px;
 
 <div class="contenedor">
 
-<h1>La ciencia que redefine el cuidado<br>del paciente está por revelarse.</h1>
+<img src="invitacion.jpg">
 
-<div class="fecha">27</div>
-<div>Viernes</div>
-<div class="mes">NOV</div>
-
-<p>19:00 Inicio</p>
-
-<p class="small">
-Av. República de El Salvador, Quito.<br>
-Agradecemos su confirmación.
-</p>
-
-<hr style="opacity:.3">
-
-<p>
-Respire el futuro en una sola noche,<br>
-la nueva dimensión en el bienestar.
-</p>
-
-<p>
-Tenemos el honor de invitarle a una velada exclusiva en:
-</p>
-
-<h2>Hotel Dann Carlton</h2>
-
-<p class="small">
-Esperamos contar con su valiosa presencia.
-</p>
-
-<!-- FORMULARIO -->
-
-<div class="formulario">
-
-<input id="nombre" placeholder="Nombre completo" required><br>
-
-<select id="asistencia">
-<option value="Sí asistiré">Sí asistiré</option>
-<option value="No podré asistir">No podré asistir</option>
-</select><br>
-
-<button class="boton" onclick="enviar()">CONFIRMAR</button>
+<button class="confirmar" onclick="abrir()">CONFIRMAR</button>
 
 </div>
 
-<p class="small">
-Equipos Médicos Respiratorios y Sanrai International<br>
-+593 99 501 0946
-</p>
+<div class="modal" id="modal">
+
+<div class="form">
+
+<h3>Confirmar asistencia</h3>
+
+<input id="nombre" placeholder="Nombre completo"><br>
+
+<select id="asistencia">
+<option>Sí asistiré</option>
+<option>No podré asistir</option>
+</select><br>
+
+<button onclick="enviar()">Enviar</button>
+
+</div>
 
 </div>
 
 <script>
+
+function abrir(){
+document.getElementById("modal").style.display="flex";
+}
+
 function enviar(){
 
 let nombre=document.getElementById("nombre").value;
 
 if(nombre==""){
-alert("Por favor escribe tu nombre");
+alert("Escribe tu nombre");
 return;
 }
 
@@ -145,10 +125,11 @@ emailjs.send("service_n8ktscm","template_f0x7d1h",{
 nombre:nombre,
 asistencia:document.getElementById("asistencia").value
 }).then(()=>{
-alert("Confirmación enviada correctamente ❤️");
-document.getElementById("nombre").value="";
+alert("Confirmado ❤️");
+document.getElementById("modal").style.display="none";
 });
 }
+
 </script>
 
 </body>
