@@ -25,10 +25,6 @@ box-sizing:border-box;
 
 body{
 background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
 font-family:Arial;
 }
 
@@ -44,19 +40,27 @@ align-items:center;
 overflow:hidden;
 }
 
-/* IMAGEN */
+/* IMAGEN RESPONSIVE REAL */
 
 .poster img{
-max-width:100%;
-max-height:100%;
-object-fit:contain;
+width:100%;
+height:auto;
 }
 
-/* BOTÓN */
+/* PC */
+
+@media(min-width:900px){
+.poster img{
+height:100%;
+width:auto;
+}
+}
+
+/* BOTON */
 
 .confirmar{
 position:absolute;
-top:58%;
+top:48%;
 left:50%;
 transform:translate(-50%,-50%);
 padding:12px 45px;
@@ -65,7 +69,6 @@ border:2px solid #2fa4ff;
 color:white;
 border-radius:30px;
 letter-spacing:2px;
-font-size:14px;
 cursor:pointer;
 }
 
@@ -86,15 +89,13 @@ height:100%;
 background:rgba(0,0,0,.85);
 justify-content:center;
 align-items:center;
-padding:20px;
 }
 
 .form{
 background:#081828;
 padding:25px;
 border-radius:12px;
-width:100%;
-max-width:300px;
+width:280px;
 text-align:center;
 }
 
@@ -102,8 +103,8 @@ input,select{
 width:100%;
 padding:10px;
 margin:10px 0;
-border:none;
 border-radius:6px;
+border:none;
 }
 
 .enviar{
