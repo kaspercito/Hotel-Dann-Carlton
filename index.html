@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Invitación Especial</title>
+<title>Invitación</title>
 <link rel="icon" href="icono.jpg">
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -17,57 +17,38 @@ emailjs.init("QUCTn3sYYVJ2oKyt_");
 
 <style>
 
-*{
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-margin:0;
-min-height:100vh;
-font-family:Arial;
-background:url("invitacion.jpg") center/cover no-repeat fixed;
+background:black;
 display:flex;
 justify-content:center;
 align-items:center;
-}
-
-/* capa oscura sobre fondo */
-
-body::before{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.65);
-z-index:-1;
-}
-
-/* tarjeta principal */
-
-.contenedor{
-position:relative;
-width:100%;
-max-width:420px;
-box-shadow:0 0 50px black;
-border-radius:12px;
+height:100vh;
 overflow:hidden;
-background:black;
+font-family:Arial;
 }
 
-/* imagen */
+/* poster completo */
 
-.contenedor img{
-width:100%;
+.poster{
+position:relative;
+height:100vh;
+aspect-ratio:9/16;
+max-width:100vw;
+}
+
+.poster img{
+height:100%;
+width:auto;
 display:block;
 }
 
-/* botón */
+/* boton */
 
 .confirmar{
 position:absolute;
-bottom:22%;
+top:55%;
 left:50%;
 transform:translateX(-50%);
 padding:12px 40px;
@@ -76,14 +57,12 @@ border:2px solid #2fa4ff;
 color:white;
 border-radius:30px;
 letter-spacing:2px;
-font-size:13px;
 cursor:pointer;
 }
 
 .confirmar:hover{
 background:#2fa4ff;
 color:black;
-transition:.3s;
 }
 
 /* modal */
@@ -98,15 +77,13 @@ height:100%;
 background:rgba(0,0,0,.8);
 justify-content:center;
 align-items:center;
-padding:20px;
 }
 
 .form{
 background:#081828;
 padding:25px;
 border-radius:12px;
-width:100%;
-max-width:300px;
+width:280px;
 text-align:center;
 }
 
@@ -114,8 +91,8 @@ input,select{
 width:100%;
 padding:10px;
 margin:10px 0;
-border:none;
 border-radius:6px;
+border:none;
 }
 
 .enviar{
@@ -123,18 +100,8 @@ width:100%;
 padding:12px;
 border:none;
 background:#2fa4ff;
-color:black;
 border-radius:20px;
-cursor:pointer;
 font-weight:bold;
-}
-
-/* PC */
-
-@media(min-width:900px){
-.contenedor{
-max-width:380px;
-}
 }
 
 </style>
@@ -142,7 +109,7 @@ max-width:380px;
 
 <body>
 
-<div class="contenedor">
+<div class="poster">
 
 <img src="invitacion.jpg">
 
@@ -150,7 +117,7 @@ max-width:380px;
 
 </div>
 
-<div class="modal" id="modal" onclick="cerrar(event)">
+<div class="modal" id="modal">
 
 <div class="form">
 
@@ -175,18 +142,12 @@ function abrir(){
 document.getElementById("modal").style.display="flex";
 }
 
-function cerrar(e){
-if(e.target.className=="modal"){
-document.getElementById("modal").style.display="none";
-}
-}
-
 function enviar(){
 
 let nombre=document.getElementById("nombre").value;
 
 if(nombre==""){
-alert("Por favor escribe tu nombre");
+alert("Escribe tu nombre");
 return;
 }
 
@@ -194,9 +155,8 @@ emailjs.send("service_n8ktscm","template_f0x7d1h",{
 nombre:nombre,
 asistencia:document.getElementById("asistencia").value
 }).then(()=>{
-alert("Confirmación enviada ❤️");
+alert("Confirmado ❤️");
 document.getElementById("modal").style.display="none";
-document.getElementById("nombre").value="";
 });
 }
 
