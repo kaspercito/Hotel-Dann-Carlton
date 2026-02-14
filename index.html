@@ -17,33 +17,19 @@ emailjs.init("QUCTn3sYYVJ2oKyt_");
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
 body{
+margin:0;
 background:black;
 font-family:Arial;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-}
-
-.contenedor{
 position:relative;
-height:100vh;
-aspect-ratio:9/16;
-max-width:430px;
 }
 
-.contenedor img{
+/* IMAGEN */
+
+img{
 width:100%;
-height:100%;
-object-fit:cover;
+max-width:420px;
+margin:auto;
 display:block;
 }
 
@@ -51,12 +37,9 @@ display:block;
 
 .confirmar{
 position:absolute;
-
-/* 🔥 SUBIDO BASTANTE */
-bottom:35%;
-
 left:50%;
 transform:translateX(-50%);
+top:58%;
 
 padding:14px 50px;
 background:transparent;
@@ -64,10 +47,11 @@ border:2px solid #2fa4ff;
 color:white;
 border-radius:30px;
 letter-spacing:2px;
+z-index:5;
 cursor:pointer;
 }
 
-/* modal */
+/* MODAL */
 
 .modal{
 display:none;
@@ -79,7 +63,7 @@ height:100%;
 background:rgba(0,0,0,.85);
 justify-content:center;
 align-items:center;
-z-index:99;
+z-index:10;
 }
 
 .form{
@@ -88,12 +72,15 @@ padding:25px;
 border-radius:12px;
 width:280px;
 text-align:center;
+color:white;
 }
 
 input,select{
 width:100%;
 padding:10px;
 margin:10px 0;
+border-radius:6px;
+border:none;
 }
 
 .enviar{
@@ -102,6 +89,8 @@ padding:12px;
 border:none;
 background:#2fa4ff;
 border-radius:20px;
+color:white;
+cursor:pointer;
 }
 
 </style>
@@ -109,19 +98,17 @@ border-radius:20px;
 
 <body>
 
-<div class="contenedor">
-
 <img src="invitacion1.jpg">
 
 <button class="confirmar" onclick="abrir()">CONFIRMAR</button>
 
-</div>
+<img src="invitacion2.jpg">
 
 <div class="modal" id="modal">
 
 <div class="form">
 
-<h3 style="color:white">Confirmar asistencia</h3>
+<h3>Confirmar asistencia</h3>
 
 <input id="nombre" placeholder="Nombre completo">
 
