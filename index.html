@@ -21,37 +21,30 @@ body{
 margin:0;
 background:black;
 font-family:Arial;
-position:relative;
 }
-
-/* IMAGEN */
 
 img{
 width:100%;
-max-width:420px;
-margin:auto;
 display:block;
 }
 
 /* BOTON */
 
 .confirmar{
-position:absolute;
+position:fixed;
+bottom:40px;
 left:50%;
 transform:translateX(-50%);
-top:58%;
-
 padding:14px 50px;
 background:transparent;
 border:2px solid #2fa4ff;
 color:white;
 border-radius:30px;
 letter-spacing:2px;
-z-index:5;
-cursor:pointer;
+z-index:10;
 }
 
-/* MODAL */
+/* modal */
 
 .modal{
 display:none;
@@ -63,7 +56,6 @@ height:100%;
 background:rgba(0,0,0,.85);
 justify-content:center;
 align-items:center;
-z-index:10;
 }
 
 .form{
@@ -72,15 +64,12 @@ padding:25px;
 border-radius:12px;
 width:280px;
 text-align:center;
-color:white;
 }
 
 input,select{
 width:100%;
 padding:10px;
 margin:10px 0;
-border-radius:6px;
-border:none;
 }
 
 .enviar{
@@ -89,8 +78,6 @@ padding:12px;
 border:none;
 background:#2fa4ff;
 border-radius:20px;
-color:white;
-cursor:pointer;
 }
 
 </style>
