@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Invitación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Invitación Especial</title>
 <link rel="icon" href="icono.jpg">
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -15,39 +16,60 @@ emailjs.init("QUCTn3sYYVJ2oKyt_");
 </script>
 
 <style>
+
+*{
+box-sizing:border-box;
+}
+
 body{
 margin:0;
 background:black;
+min-height:100vh;
 display:flex;
 justify-content:center;
+align-items:center;
+font-family:Arial;
 }
+
+/* CONTENEDOR */
 
 .contenedor{
 position:relative;
+width:100%;
 max-width:420px;
 }
+
+/* IMAGEN */
 
 .contenedor img{
 width:100%;
 display:block;
 }
 
-/* BOTÓN SOBRE EL PDF */
+/* BOTON */
+
 .confirmar{
 position:absolute;
-bottom:160px;
+bottom:22%;
 left:50%;
 transform:translateX(-50%);
-padding:14px 35px;
-background:#b01616;
+padding:12px 40px;
+background:transparent;
+border:2px solid #2fa4ff;
 color:white;
-border:none;
-border-radius:8px;
-font-size:16px;
+border-radius:30px;
+letter-spacing:2px;
+font-size:13px;
 cursor:pointer;
 }
 
-/* FORMULARIO MODAL */
+.confirmar:hover{
+background:#2fa4ff;
+color:black;
+transition:.3s;
+}
+
+/* MODAL */
 
 .modal{
 display:none;
@@ -56,22 +78,56 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.8);
+background:rgba(0,0,0,.85);
 justify-content:center;
 align-items:center;
+padding:20px;
 }
 
 .form{
-background:#111;
+background:#081828;
 padding:25px;
-border-radius:10px;
+border-radius:12px;
+width:100%;
+max-width:300px;
 text-align:center;
+box-shadow:0 0 30px black;
+}
+
+.form h3{
+margin-top:0;
+color:white;
 }
 
 input,select{
+width:100%;
 padding:10px;
-margin:8px;
-width:230px;
+margin:10px 0;
+border:none;
+border-radius:6px;
+}
+
+.enviar{
+width:100%;
+padding:12px;
+border:none;
+background:#2fa4ff;
+color:black;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.enviar:hover{
+opacity:.8;
+}
+
+/* RESPONSIVE */
+
+@media(min-width:900px){
+.contenedor{
+max-width:380px;
+}
 }
 
 </style>
@@ -87,20 +143,20 @@ width:230px;
 
 </div>
 
-<div class="modal" id="modal">
+<div class="modal" id="modal" onclick="cerrar(event)">
 
 <div class="form">
 
 <h3>Confirmar asistencia</h3>
 
-<input id="nombre" placeholder="Nombre completo"><br>
+<input id="nombre" placeholder="Nombre completo">
 
 <select id="asistencia">
 <option>Sí asistiré</option>
 <option>No podré asistir</option>
-</select><br>
+</select>
 
-<button onclick="enviar()">Enviar</button>
+<button class="enviar" onclick="enviar()">Enviar</button>
 
 </div>
 
@@ -112,12 +168,18 @@ function abrir(){
 document.getElementById("modal").style.display="flex";
 }
 
+function cerrar(e){
+if(e.target.className=="modal"){
+document.getElementById("modal").style.display="none";
+}
+}
+
 function enviar(){
 
 let nombre=document.getElementById("nombre").value;
 
 if(nombre==""){
-alert("Escribe tu nombre");
+alert("Por favor escribe tu nombre");
 return;
 }
 
@@ -125,8 +187,9 @@ emailjs.send("service_n8ktscm","template_f0x7d1h",{
 nombre:nombre,
 asistencia:document.getElementById("asistencia").value
 }).then(()=>{
-alert("Confirmado ❤️");
+alert("Confirmación enviada ❤️");
 document.getElementById("modal").style.display="none";
+document.getElementById("nombre").value="";
 });
 }
 
